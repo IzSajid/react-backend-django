@@ -31,8 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'rest_framework',
-    'customers',
+    'corsheaders',                # I added this line
+    'rest_framework',             # I added this line
+    'customers',                  # I added this line
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +43,8 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',      # I added this line
+    'django.middleware.common.CommonMiddleware',  # I added this line
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -50,6 +53,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+#Orgin is the URL of the frontend application that will be sending requests to the Django backend.(by me)
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
+
 
 ROOT_URLCONF = 'customers.urls'
 
